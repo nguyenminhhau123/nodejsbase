@@ -1,8 +1,15 @@
+const userDB = require("../model/user");
+const cvDB = require("../model/cv");
+
 const getHomePage = (req, res) => {
-  res.render("index", { title: "Express" });
+  userDB.find({}).then((data) => {
+    res.render("index", { data });
+  });
 };
 const getCVPage = (req, res) => {
-  res.render("cv");
+  cvDB.find({}).then((data) => {
+    res.render("cv", { data: data });
+  });
 };
 const getUserPage = (req, res) => {
   res.send("respond with a resource");
